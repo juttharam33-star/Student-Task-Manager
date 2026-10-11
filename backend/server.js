@@ -57,25 +57,27 @@ app.post('/api/tasks', async (req, res) => {
         res.status(500).json({ error: "Failed to create task" });
     }
 });
-
-// 3. PUT: Update task completion status (Bonus Challenge)
+// 3. PUT: Update task title or completion status
 app.put('/api/tasks/:id', async (req, res) => {
-    try {
-        const { completed } = req.body;
-        const updatedTask = await Task.findByIdAndUpdate(
-            req.params.id,
-            { completed },
-            { new: true }
-        );
+  try {
+    const { title, completed } = req.body;
+    const updateData = {};
+    if (title !== undefined) updateData.title = title;
+    if (completed !== undefined) updateData.completed = completed;
 
-        if (!updatedTask) {
-            return res.status(404).json({ error: "Task not found" });
-        }
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id, 
+      updateData, 
+      { new: true }
+    );
 
-        res.status(200).json({ message: "Task updated successfully", task: updatedTask });
-    } catch (err) {
-        res.status(500).json({ error: "Failed to update task" });
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" });
     }
+    res.status(200).json({ message: "Task updated successfully", task: updatedTask });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update task" });
+  }
 });
 
 // 4. DELETE: Delete a task using its ID

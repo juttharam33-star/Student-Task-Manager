@@ -116,3 +116,45 @@ h2 {
   font-style: italic;
   margin-top: 20px;
 }
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-input {
+  padding: 4px 8px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: none;
+}
+
+.edit-btn {
+  background-color: #fab005;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: #f59f00;
+}
+
+.save-btn {
+  background-color: #40c057;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #2b8a3e;
+}
